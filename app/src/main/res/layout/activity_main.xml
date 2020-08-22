@@ -66,18 +66,21 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:text="공개 안함" />
     </RadioGroup>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:text="추천인 닉네임" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="추천인 닉네임 검색"
+        android:visibility="gone"
         android:singleLine="true"
         android:imeOptions="actionSearch"/>
 
