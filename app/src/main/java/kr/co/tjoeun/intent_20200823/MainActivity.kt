@@ -13,7 +13,14 @@ class MainActivity : AppCompatActivity() {
 //        다른화면으로 이동하기 버튼이 눌리면
         moveToOtherActivityBtn.setOnClickListener {
             val myIntent = Intent(this, OtherActivity::class.java)
+            startActivity(myIntent)
+        }
 
+//        메시지 전달 버튼이 눌리면
+        sendMessageBtn.setOnClickListener {
+            val inputMessage = messageEdt.text.toString()
+            val myIntent = Intent(this, MessageActivity::class.java)
+            myIntent.putExtra("message", inputMessage)
             startActivity(myIntent)
         }
     }
