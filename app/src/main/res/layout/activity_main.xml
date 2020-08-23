@@ -26,4 +26,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="사용자가 눌렀다고 인식 가능한 버튼" />
+
+    <EditText
+        android:id="@+id/contentEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:hint="토스트로 출력할 내용 적기" />
+
+    <Button
+        android:id="@+id/contentToastBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="입력된 문구 토스트로 띄우기" />
+
 </LinearLayout>
