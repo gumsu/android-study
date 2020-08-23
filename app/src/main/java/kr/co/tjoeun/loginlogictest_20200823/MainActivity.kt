@@ -10,14 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        로그인 버튼이 눌렸을 때
         loginBtn.setOnClickListener {
 
-//            아이디 / 비번에 뭐라고 적혀있는지 각각 변수로 저장
             val inputId = idEdt.text.toString()
             val inputPw = pwEdt.text.toString()
 
-//            아이디: admin@test.com ADN 비번: qwer 질문(검사)
             if (inputId == "admin@test.com" && inputPw == "qwer"){
                 Toast.makeText(this, "관리자 로그인입니다", Toast.LENGTH_SHORT).show()
             }else{
