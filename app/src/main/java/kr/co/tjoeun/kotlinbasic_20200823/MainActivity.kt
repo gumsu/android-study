@@ -15,5 +15,9 @@ class MainActivity : AppCompatActivity() {
             
             Log.d("메인화면", "클릭 미 버튼 눌림")
         }
+        makeLogBtn.setOnClickListener {
+            Log.d("메인화면", "로그 남기기 버튼 눌림")
+//            xml에 추가한 버튼을 makeLogBtn으로 이름지어서 => 눌리면 "로그 남기기 버튼 눌림" 로그 남겨보기
+        }
     }
 }

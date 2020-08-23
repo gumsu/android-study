@@ -14,4 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="click me!" />
+
+    <Button
+        android:id="@+id/makeLogBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그 남기기 버튼" />
 </LinearLayout>
