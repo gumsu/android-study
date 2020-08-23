@@ -20,4 +20,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="로그 남기기 버튼" />
+
+    <Button
+        android:id="@+id/toastBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="사용자가 눌렀다고 인식 가능한 버튼" />
 </LinearLayout>
