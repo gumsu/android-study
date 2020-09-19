@@ -70,6 +70,18 @@ class MainActivity : AppCompatActivity() {
             myIntent.putExtra("sms_body","[공유] 이 앱을 다운로드 해주세요")
             startActivity(myIntent)
         }
+
+        naverWebLinkBtn.setOnClickListener {
+            val myUri = Uri.parse("https://naver.com")
+            val myIntent = Intent(Intent.ACTION_VIEW, myUri)
+            startActivity(myIntent)
+        }
+
+        kakaoPlayStoreLinkBtn.setOnClickListener {
+            val myUri = Uri.parse("market://details?id=com.kakao.talk")
+            val myIntent = Intent(Intent.ACTION_VIEW, myUri)
+            startActivity(myIntent)
+        }
     }
 
     /*

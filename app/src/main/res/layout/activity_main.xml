@@ -81,4 +81,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="문자로 앱 공유하기 (SENDTO)"/>
+
+    <Button
+        android:id="@+id/naverWebLinkBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="네이버 홈페이지 이동"/>
+
+    <Button
+        android:id="@+id/kakaoPlayStoreLinkBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="카카오톡 플레이스토어 이동"/>
 </LinearLayout>
