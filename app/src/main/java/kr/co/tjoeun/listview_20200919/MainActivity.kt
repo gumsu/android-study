@@ -34,10 +34,15 @@ class MainActivity : AppCompatActivity() {
         studentListView.adapter = mAdapter
 
         studentListView.setOnItemClickListener { parent, view, position, id ->
-
             val clickedStudent = mStudentList[position]
 
             Toast.makeText(this,clickedStudent.name,Toast.LENGTH_SHORT).show()
+        }
+        studentListView.setOnItemLongClickListener { parent, view, position, id ->
+            val longClickedStudent = mStudentList[position]
+
+            Toast.makeText(this,"${longClickedStudent.name} 길게 눌림",Toast.LENGTH_SHORT).show()
+            return@setOnItemLongClickListener true
         }
     }
 }
