@@ -50,6 +50,15 @@ class MainActivity : AppCompatActivity() {
              val myIntent = Intent(Intent.ACTION_DIAL,myUri)
              startActivity(myIntent)
          }
+
+//        CALL 액션 예제 => 실행 불가
+        callBtn.setOnClickListener {
+            val inputPhoneNum = phoneNumEdt.text.toString()
+
+            val myUri = Uri.parse("tel:${inputPhoneNum}")
+            val myIntent = Intent(Intent.ACTION_CALL,myUri)
+            startActivity(myIntent)
+        }
     }
 
     /*
