@@ -56,4 +56,17 @@
             android:layout_height="wrap_content"
             android:text="닉네임 변경" />
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/phoneNumEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="상대방 전화번호를 입력하세요"
+        android:inputType="phone"/>
+
+    <Button
+        android:id="@+id/dialBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="전화 걸기 (DIAL)"/>
 </LinearLayout>
