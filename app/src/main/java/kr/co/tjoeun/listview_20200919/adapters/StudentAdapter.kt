@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import kr.co.tjoeun.listview_20200919.R
 import kr.co.tjoeun.listview_20200919.datas.Student
 
@@ -23,6 +24,16 @@ class StudentAdapter(
         }
 
         val row = tempRow!!
+
+//        row에 데이터를 반영해서 => return 되도록
+        val studentNameTxt = row.findViewById<TextView>(R.id.studentNameTxt)
+        val studentAgeTxt = row.findViewById<TextView>(R.id.studentAgeTxt)
+        val studentAddressTxt = row.findViewById<TextView>(R.id.studentAddressTxt)
+
+        val student = mList[position]
+
+        studentNameTxt.text = student.name
+        studentAddressTxt.text = student.address
 
         return row
     }

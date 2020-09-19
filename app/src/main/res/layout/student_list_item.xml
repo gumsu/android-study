@@ -17,6 +17,7 @@
             android:gravity="center_vertical">
 
             <TextView
+                android:id="@+id/studentNameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="학생 이름"
@@ -24,6 +25,7 @@
                 android:textColor="#000000"/>
 
             <TextView
+                android:id="@+id/studentAgeTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(30세)"
@@ -32,6 +34,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/studentAddressTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="서울시 은평구"
