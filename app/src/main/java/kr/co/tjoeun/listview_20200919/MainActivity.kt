@@ -39,9 +39,15 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this,clickedStudent.name,Toast.LENGTH_SHORT).show()
         }
         studentListView.setOnItemLongClickListener { parent, view, position, id ->
-            val longClickedStudent = mStudentList[position]
+//            val longClickedStudent = mStudentList[position]
 
-            Toast.makeText(this,"${longClickedStudent.name} 길게 눌림",Toast.LENGTH_SHORT).show()
+            /*
+            removeAt만 사용하면 삭제된 데이터 반영이 되지 않아 강제 종료된다.
+            데이터가 갱신되었음을 어댑터가 알아차려야 한다.
+             */
+            mStudentList.removeAt(position)
+
+            mAdapter.notifyDataSetChanged()
             return@setOnItemLongClickListener true
         }
     }
