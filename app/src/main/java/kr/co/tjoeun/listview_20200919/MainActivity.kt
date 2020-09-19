@@ -1,8 +1,10 @@
 package kr.co.tjoeun.listview_20200919
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import kr.co.tjoeun.listview_20200919.adapters.StudentAdapter
 import kr.co.tjoeun.listview_20200919.datas.Student
@@ -41,13 +43,22 @@ class MainActivity : AppCompatActivity() {
         studentListView.setOnItemLongClickListener { parent, view, position, id ->
 //            val longClickedStudent = mStudentList[position]
 
+            val alert = AlertDialog.Builder(this)   //빌더는 덧붙여서 만들어나간다는 의미로 이해하자
+            alert.setTitle("학생 삭제 확인")
+            alert.setMessage("정말 해당 학생을 삭제하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
+                mStudentList.removeAt(position)
+
+                mAdapter.notifyDataSetChanged()
+            })
+            alert.setNegativeButton("취소",null)
+
+            alert.show()
+
             /*
             removeAt만 사용하면 삭제된 데이터 반영이 되지 않아 강제 종료된다.
             데이터가 갱신되었음을 어댑터가 알아차려야 한다.
              */
-            mStudentList.removeAt(position)
-
-            mAdapter.notifyDataSetChanged()
             return@setOnItemLongClickListener true
         }
     }
