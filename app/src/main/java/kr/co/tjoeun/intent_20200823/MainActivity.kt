@@ -59,6 +59,17 @@ class MainActivity : AppCompatActivity() {
             val myIntent = Intent(Intent.ACTION_CALL,myUri)
             startActivity(myIntent)
         }
+
+        smsBtn.setOnClickListener {
+            val inputPhoneNum = phoneNumEdt.text.toString()
+
+            val myUri = Uri.parse("smsto:${inputPhoneNum}")
+            val myIntent = Intent(Intent.ACTION_SENDTO,myUri)
+
+//            문자 내용을 미리 작성해서 첨부
+            myIntent.putExtra("sms_body","[공유] 이 앱을 다운로드 해주세요")
+            startActivity(myIntent)
+        }
     }
 
     /*
