@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         changeNickNameBtn.setOnClickListener { 
             
 //            닉네임 입력화면으로 이동 (입력 결과를 받으러 가는 것이다)
-            val myIntent = intent(this,EditNickNameActivity::class.java)
+            val myIntent = Intent(this,EditNickNameActivity::class.java)
             
 //            (닉네임 입력 => 1000 숫자로 대신 표기) 결과를 받으러 이동한다고 별도로 명시
 //            1000 대신 => 멤버변수로 만들어둔 REQUEST_FOR_NICKNAME를 활용, 가독성 향상
