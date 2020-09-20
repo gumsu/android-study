@@ -29,7 +29,7 @@ class MainActivity : BasicActivity() {
             val clickedRoom = mRooms[position]
 
             val myIntent = Intent(mContext,VeiwRoomDetailActivity::class.java)
-            myIntent.putex
+            myIntent.putExtra("roomInfo", clickedRoom)
             startActivity(myIntent)
         }
     }
