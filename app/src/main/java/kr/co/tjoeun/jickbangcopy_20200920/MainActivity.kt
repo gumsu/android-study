@@ -1,5 +1,6 @@
 package kr.co.tjoeun.jickbangcopy_20200920
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -24,6 +25,13 @@ class MainActivity : BasicActivity() {
 
     override fun setupEvents() {
 //        버튼 이벤트 / 리스트뷰 이벤트 등 이벤트처리만 모아두는 코드
+        roomListView.setOnItemClickListener { parent, view, position, id ->
+            val clickedRoom = mRooms[position]
+
+            val myIntent = Intent(mContext,VeiwRoomDetailActivity::class.java)
+            myIntent.putex
+            startActivity(myIntent)
+        }
     }
 
     override fun setValues() {

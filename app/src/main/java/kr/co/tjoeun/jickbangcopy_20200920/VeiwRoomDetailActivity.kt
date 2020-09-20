@@ -2,6 +2,7 @@ package kr.co.tjoeun.jickbangcopy_20200920
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import kr.co.tjoeun.jickbangcopy_20200920.datas.Room
 
 class VeiwRoomDetailActivity : BasicActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,9 +13,10 @@ class VeiwRoomDetailActivity : BasicActivity() {
     }
 
     override fun setupEvents() {
-        TODO("Not yet implemented")
+
     }
     override fun setValues() {
-        TODO("Not yet implemented")
+        val roomData = intent.getSerializableExtra("roomInfo") as Room
+
     }
 }
