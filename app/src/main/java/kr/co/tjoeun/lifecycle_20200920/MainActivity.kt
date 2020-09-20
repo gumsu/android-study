@@ -19,4 +19,16 @@ class MainActivity : AppCompatActivity() {
             startActivity(myIntent)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("메인화면","onResume 실행됨")
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Log.d("메인화면","onPause 실행됨")
+    }
 }
