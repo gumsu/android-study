@@ -16,4 +16,10 @@ class OtherActivity : AppCompatActivity() {
             finish()
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        Log.d("다른화면","onDestroy 실행")
+    }
 }
