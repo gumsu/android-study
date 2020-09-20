@@ -6,23 +6,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".OtherActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="메인 화면 입니다"
-        android:textSize="20sp" />
+        android:text="다른 화면으로 넘어왔습니다"
+        android:textSize="20sp"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="아무 문장이나 입력하세요"
-        android:singleLine="true"/>
+        android:hint="아무 문장이나 입력하세요"/>
 
     <Button
-        android:id="@+id/moveToOtherBtn"
+        android:id="@+id/goBackBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="다른 액티비티로 이동"/>
+        android:text="메인으로 돌아가기" />
 </LinearLayout>
