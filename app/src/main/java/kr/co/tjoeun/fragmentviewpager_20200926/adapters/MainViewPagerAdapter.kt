@@ -15,12 +15,10 @@ class MainViewPagerAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         // 각각의 position에 맞는 프래그먼트 자리 지정
-        if(position == 0){
-            return MyNameFragment()
-        }else if(position == 1){
-            return MyAgeFragment()
-        }else{
-            return MyAddressFragment()
+        return when(position){
+            0 -> {MyNameFragment()}
+            1 -> {MyAgeFragment()}
+            else -> {MyAddressFragment()}
         }
     }
 
