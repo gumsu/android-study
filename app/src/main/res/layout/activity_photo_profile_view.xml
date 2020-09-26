@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#000000"
-    tools:context=".ViewprofilePhotoActivity">
+    tools:context=".ViewProfilePhotoActivity">
 
-    <ImageView
+    <com.github.chrisbanes.photoview.PhotoView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/iu"/>
