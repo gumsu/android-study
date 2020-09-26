@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import kr.co.tjoeun.fragmentviewpager_20200926.R
 
-class myAddressFragment : Fragment() {
+class MyAddressFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
