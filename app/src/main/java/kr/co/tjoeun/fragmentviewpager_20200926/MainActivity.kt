@@ -7,7 +7,7 @@ import kr.co.tjoeun.fragmentviewpager_20200926.adapters.MainViewPagerAdapter
 
 class MainActivity : BaseActivity() {
 
-    lateinit var mAdapter = MainViewPagerAdapter
+    lateinit var mAdapter : MainViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
