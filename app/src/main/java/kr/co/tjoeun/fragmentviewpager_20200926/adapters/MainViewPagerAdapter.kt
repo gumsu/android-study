@@ -8,6 +8,16 @@ import kr.co.tjoeun.fragmentviewpager_20200926.fragments.MyAgeFragment
 import kr.co.tjoeun.fragmentviewpager_20200926.fragments.MyNameFragment
 
 class MainViewPagerAdapter(fm:FragmentManager) : FragmentPagerAdapter(fm) {
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        // 탭 레이아웃의 제목 달기
+        return when(position){
+            0 -> "이름"
+            1 -> "나이"
+            else -> "거주지"
+        }
+    }
+
     override fun getCount(): Int {
         // 뷰페이저가 총 몇 개의 프래그먼트(페이지)를 사용할 것인지???
         return 3
