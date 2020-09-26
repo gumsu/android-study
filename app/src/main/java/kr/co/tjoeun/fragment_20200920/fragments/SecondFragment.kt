@@ -20,5 +20,11 @@ class SecondFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_second,container,false)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
+        toastBtn.setOnClickListener {
+            Toast.makeText(context,"버튼이 눌림",Toast.LENGTH_SHORT).show()
+        }
+    }
 }
