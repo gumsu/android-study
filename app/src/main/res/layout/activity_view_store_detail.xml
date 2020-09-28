@@ -14,6 +14,7 @@
         android:gravity="center">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/storeLogoImg"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:src="@mipmap/ic_launcher"
@@ -27,6 +28,7 @@
         android:textSize="16sp"
         android:layout_marginTop="10dp"/>
     <TextView
+        android:id="@+id/storeNameTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="도미노 피자"
@@ -45,6 +47,7 @@
         android:gravity="center_vertical">
 
         <TextView
+            android:id="@+id/phoneNumTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1577-3082"
@@ -54,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
         <Button
+            android:id="@+id/callBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전화 주문"/>
