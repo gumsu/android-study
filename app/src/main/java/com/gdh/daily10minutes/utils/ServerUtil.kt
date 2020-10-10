@@ -7,11 +7,19 @@ import java.io.IOException
 
 class ServerUtil {
 
+//    화면(액티비티)의 입장에서 서버 응답이 돌아왔을 때 어떤 행동을 실행할 지
+//    행동 지침을 담아주기 위한 인터페이스 (가이드북/메뉴얼) 정의
+
+    interface JsonResponseHandler{
+        fun onResponse(json : JSONObject)
+    }
+
     companion object{
 
         val HOST_URL = "http://15.164.153.174"
 
-        fun postRequestLogin(id:String, pw:String){
+//        로그인 할 때 아이디, 비번, 가이드북까지 담는다.
+        fun postRequestLogin(id:String, pw:String, handler : JsonResponseHandler?){
 
             val client = OkHttpClient()
 
@@ -52,6 +60,10 @@ class ServerUtil {
                     val jsonObj = JSONObject(bodyString)
 
                     Log.d("서버 응답 본문",jsonObj.toString())
+
+//                    어떤 서버 응답 처리를 해줄지 가이드북 (인터페이스)가 존재한다면,
+//                    그 가이드북에 적힌 내용을 실제로 실행해달라는 코드
+                    handler?.onResponse(jsonObj)
                 }
 
             })
