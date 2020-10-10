@@ -1,8 +1,9 @@
 package com.gdh.daily10minutes.utils
 
-import okhttp3.FormBody
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import android.util.Log
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 class ServerUtil {
 
@@ -34,7 +35,26 @@ class ServerUtil {
                 .build()
 
 //            완성된 Request를 가지고 실제로 서버에 연결하는 (클라이언트의 일) 코드
-            client.newCall(request)
+            client.newCall(request).enqueue(object : Callback{
+                override fun onFailure(call: Call, e: IOException) {
+//                    서버에 연결 자체를 실패한 경우
+//                    인터넷 연결 실패 등 물리적 실패
+//                    아이디/비번 틀림 등 로그인 실패는 여기가 아니다.
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+//                    검사 결과가 성공이든 실패든 관계 없이 서버가 무언가 답변을 해주면 무조건 실행
+
+//                    서버가 내려준 응답 중 본문(body)만 String 형태로 저장
+                    val bodyString = response.body!!.string()
+
+//                    받아낸 String을 가지고 => 분석하기 용이한 JSONObject로 변환
+                    val jsonObj = JSONObject(bodyString)
+
+                    Log.d("서버 응답 본문",jsonObj.toString())
+                }
+
+            })
         }
     }
 }
