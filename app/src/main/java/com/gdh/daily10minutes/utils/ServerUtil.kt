@@ -162,5 +162,47 @@ class ServerUtil {
                     }
                 })
         }
+
+
+        fun getRequestProjectList(handler : JsonResponseHandler?){
+
+            val client = OkHttpClient()
+
+//              어느 주소로 가야하는가? 통일
+//              차이점: 주소를 적을 때 => 어떤 데이터가 첨부되는지(파라미터)도 같이 적어야 한다.
+//              POST/PUT 등은 formData 를 이용하지만, GET에서는 주소에 적는다.
+
+//              URL에 파라미터들을 쉽게 첨부하도록 도와주는 URL 가공기 생성
+            val urlBuilder = "${HOST_URL}/project".toHttpUrlOrNull()!!.newBuilder()
+//              URL 가공기를 이용해서 필요한 파라미터들을 쉽게 첨부할 수 있다.
+//            urlBuilder.addEncodedQueryParameter("email",emailAddress)
+
+//              가공이 끝난 URL을 urlString으로 완성
+            val urlString = urlBuilder.build().toString()
+
+//              임시 확인: 어떻게 URL이 완성되었는 지 확인
+            Log.d("완성된URL",urlString)
+
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+//                .header() 필요시 첨부
+                .build()
+
+                client.newCall(request).enqueue(object : Callback{
+                    override fun onFailure(call: Call, e: IOException) {
+                    }
+
+                    override fun onResponse(call: Call, response: Response) {
+                        val bodyString = response.body!!.string()
+                        val jsonObj = JSONObject(bodyString)
+
+                        Log.d("서버 응답 본문",jsonObj.toString())
+
+                        handler?.onResponse(jsonObj)
+                    }
+                })
+        }
+
     }
 }
