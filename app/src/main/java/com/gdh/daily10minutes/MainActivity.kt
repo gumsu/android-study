@@ -2,6 +2,7 @@ package com.gdh.daily10minutes
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gdh.daily10minutes.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -17,6 +18,9 @@ class MainActivity : BaseActivity() {
 
             val inputId = idEdt.text.toString()
             val inputPw = pwEdt.text.toString()
+
+//            ServerUtil을 이용해서 실제 로그인 시도
+            ServerUtil.postRequestLogin(inputId,inputPw)
         }
     }
 
