@@ -45,7 +45,13 @@ class LoginActivity : BaseActivity() {
                         val userObj = dataObj.getJSONObject("user")
                         val userNickname = userObj.getString("nick_name")
 
+//                        서버가 알려주는 토큰값을 기기에 저장하고 => 화면을 이동하자.
+
+//                        토큰 값을 추출 => 변수에 저장(기기에 저장 X)
+                        val token = dataObj.getString("token")
+
                         runOnUiThread {
+
                             Toast.makeText(mContext, "${userNickname}님 환영합니다", Toast.LENGTH_SHORT).show()
 
                             val myIntent = Intent(mContext,MainActivity::class.java)
