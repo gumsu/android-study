@@ -3,6 +3,9 @@ package com.gdh.daily10minutes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.widget.Toast
 import com.gdh.daily10minutes.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -17,6 +20,26 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+//                    응용문제
+//                    검사를 통과하고 나서 이메일 입력값이 변경되면 재검사 요구
+//                    이메일 입력값 변경 감지(구글링) => "중복 검사를 해주세요" 문구 변경
+//                    EditText 문구 변경 이벤트 감지
+        idEdt.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                Log.d("변경된 내용물",s.toString())
+
+//                입력값이 바뀌면 무조건 검사를 다시 요구하는 문구로 변경
+                emailCheckResultTxt.text = "중복 검사를 해주세요"
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+        })
 
         emailCheckBtn.setOnClickListener {
             val inputEmail = idEdt.text.toString()
@@ -39,10 +62,6 @@ class SignUpActivity : BaseActivity() {
                             emailCheckResultTxt.text = "사용할 수 없는 이메일입니다. 다른 이메일로 다시 검사해주세요"
                         }
                     }
-
-//                    응용문제
-//                    검사를 통과하고 나서 이메일 입력값이 변경되면 재검사 요구
-//                    이메일 입력값 변경 감지(구글링) => "중복 검사를 해주세요" 문구 변경
                 }
             })
         }
