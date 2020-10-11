@@ -165,7 +165,7 @@ class ServerUtil {
         }
 
 //        프로젝트 리스트
-        fun getRequestProjectList(content:Context, handler : JsonResponseHandler?){
+        fun getRequestProjectList(context:Context, handler : JsonResponseHandler?){
 
             val client = OkHttpClient()
 
@@ -187,7 +187,7 @@ class ServerUtil {
             val request = Request.Builder()
                 .url(urlString)
                 .get()
-                .header("X-Http-Token",ContextUtil.getLoginUserToken(content))
+                .header("X-Http-Token",ContextUtil.getLoginUserToken(context))
                 .build()
 
 //            ServerUtil에서 context에 접근할 방법이 없기 때문에 함수 파라미터에 context를 추가해서 불러와준다.
@@ -208,7 +208,7 @@ class ServerUtil {
         }
 
 //        프로젝트 디테일 화면
-        fun getRequestProjectInfoById(content:Context, projectId: Int, handler : JsonResponseHandler?){
+        fun getRequestProjectInfoById(context:Context, projectId: Int, handler : JsonResponseHandler?){
 
             val client = OkHttpClient()
 
@@ -230,7 +230,7 @@ class ServerUtil {
             val request = Request.Builder()
                 .url(urlString)
                 .get()
-                .header("X-Http-Token",ContextUtil.getLoginUserToken(content))
+                .header("X-Http-Token",ContextUtil.getLoginUserToken(context))
                 .build()
 
 //            ServerUtil에서 context에 접근할 방법이 없기 때문에 함수 파라미터에 context를 추가해서 불러와준다.
@@ -251,7 +251,7 @@ class ServerUtil {
         }
 
 //        프로젝트 참여 멤버 확인
-        fun getRequestProjectMembersById(content:Context, projectId: Int, handler : JsonResponseHandler?){
+        fun getRequestProjectMembersById(context:Context, projectId: Int, handler : JsonResponseHandler?){
 
             val client = OkHttpClient()
 
@@ -273,7 +273,7 @@ class ServerUtil {
             val request = Request.Builder()
                 .url(urlString)
                 .get()
-                .header("X-Http-Token",ContextUtil.getLoginUserToken(content))
+                .header("X-Http-Token",ContextUtil.getLoginUserToken(context))
                 .build()
 
 //            ServerUtil에서 context에 접근할 방법이 없기 때문에 함수 파라미터에 context를 추가해서 불러와준다.
