@@ -18,6 +18,14 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+        autoLoginCheckBox.setOnCheckedChangeListener { buttonView, isChecked ->
+
+//            응용문제 => 앱을 껐다가 켜도 체크 여부가 유지되도록
+//            체크되면 저장 + 화면이 열릴 때 저장된 값 불러오기 -> setter + getter
+//            Hint. 하나의 메모장에, 여러 항목 저장할 수 있다.
+            ContextUtil.setAutoLogin(mContext,isChecked)
+        }
+
         signUpBtn.setOnClickListener {
             val myIntent = Intent(mContext,SignUpActivity::class.java)
             startActivity(myIntent)
@@ -80,5 +88,8 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+//        로그인 화면이 열릴 때, 자동 로그인 체크 여부를 체크박스에 설정
+        autoLoginCheckBox.isChecked = ContextUtil.isAutoLogin(mContext)
     }
 }

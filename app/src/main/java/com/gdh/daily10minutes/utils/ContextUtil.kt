@@ -9,10 +9,11 @@ class ContextUtil {
 //        메모장의 파일 이름처럼 SharedPreferences의 이름을 짓고 변수로 만들어서 활용
 //        ContextUtil 내부에서만 사용하기 위한 변수 (다른 코틀린 파일 등 외부에 공개X) -> private
 
-        private  val prefName = "Daily10MinutesPref"
+        private val prefName = "Daily10MinutesPref"
 
 //        저장해줄 항목 이름을 변수로 생성 (오타 방지용)
-        private  val LOGIN_USER_TOKEN = "LOGIN_USER_TOKEN"
+        private val LOGIN_USER_TOKEN = "LOGIN_USER_TOKEN"
+        private val AUTO_LOGIN = "AUTO_LOGIN"
 
 //        실제 데이터 저장 함수 (setter) 생성
         fun setLoginUserToken(context: Context, token:String){
@@ -24,6 +25,17 @@ class ContextUtil {
         fun getLoginUserToken(context: Context) : String{
             val pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             return pref.getString(LOGIN_USER_TOKEN,"")!!
+        }
+
+//        자동 로그인 체크하면 체크박스에 저장하기
+        fun setAutoLogin(context: Context, isAutoLogin : Boolean){
+            val pref = context.getSharedPreferences(prefName,Context.MODE_PRIVATE)
+            pref.edit().putBoolean(AUTO_LOGIN, isAutoLogin).apply()
+        }
+
+        fun isAutoLogin(context: Context) : Boolean{
+            val pref = context.getSharedPreferences(prefName,Context.MODE_PRIVATE)
+            return pref.getBoolean(AUTO_LOGIN,false)
         }
     }
 }
