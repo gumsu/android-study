@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.gdh.daily10minutes.utils.ContextUtil
 import com.gdh.daily10minutes.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -49,6 +50,9 @@ class LoginActivity : BaseActivity() {
 
 //                        토큰 값을 추출 => 변수에 저장(기기에 저장 X)
                         val token = dataObj.getString("token")
+                        ㅅ
+//                        SharedPreferences를 이용해서 기기에 저장 (ContextUtil 클래스 활용)
+                        ContextUtil.setLoginUserToken(mContext,token)
 
                         runOnUiThread {
 
