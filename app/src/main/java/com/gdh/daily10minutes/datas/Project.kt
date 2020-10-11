@@ -15,6 +15,7 @@ class Project : Serializable {
     var desc = ""
 
     var ongoingUserCount = 0 // 현재 프로젝트 참여 인원 수
+    var proofMethod = "" // 프로젝트 인증 방법 - String
 
 //    JSONObject를 넣으면 => 파싱을 통해서 => Project 객체로 변환해주는 기능
 
@@ -33,6 +34,8 @@ class Project : Serializable {
 
 //            현재 인원 수도 추가 파싱
             p.ongoingUserCount = json.getInt("ongoing_users_count")
+//            프로젝트 인증 방법 추가 파싱
+            p.proofMethod = json.getString("proof_method")
 
 //            완성된 Project 객체를 결과로 리턴
             return  p
