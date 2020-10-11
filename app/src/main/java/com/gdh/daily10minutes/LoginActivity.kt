@@ -47,10 +47,8 @@ class LoginActivity : BaseActivity() {
                         val userNickname = userObj.getString("nick_name")
 
 //                        서버가 알려주는 토큰값을 기기에 저장하고 => 화면을 이동하자.
-
 //                        토큰 값을 추출 => 변수에 저장(기기에 저장 X)
                         val token = dataObj.getString("token")
-                        ㅅ
 //                        SharedPreferences를 이용해서 기기에 저장 (ContextUtil 클래스 활용)
                         ContextUtil.setLoginUserToken(mContext,token)
 
