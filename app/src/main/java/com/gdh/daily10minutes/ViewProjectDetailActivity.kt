@@ -24,10 +24,27 @@ class ViewProjectDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-        viewMembersBtn.setOnClickListener {
-            val myIntent = Intent(mContext, ViewProjectMemberActivity::class.java)
-            myIntent.putExtra("project", mProject)
-            startActivity(myIntent)
+
+        giveUpBtn.setOnClickListener {
+
+//            포기 신청 API 호출 - DELETE 메소드 예제
+            ServerUtil.deleteRequestGiveUpProject(mContext, mProject.id, object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(json: JSONObject) {
+
+                        val code = json.getInt("code")
+
+                        if (code == 200) {
+
+//                            서버에서 변경된 프로젝트 정보를 안내려준다. 새로고침을 못하는가?
+//                            새로 데이터를 다시 확인해보자. => 서버에 현재 상태 다시 조회
+                            getProjectInfoFromServer()
+                        } else {
+                            runOnUiThread {
+                                Toast.makeText(mContext, "참여중인 프로젝트가 아닙니다", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                })
         }
 
         applyBtn.setOnClickListener {
@@ -73,6 +90,12 @@ class ViewProjectDetailActivity : BaseActivity() {
                 Toast.makeText(mContext, "준비가 되면 도전해주세요", Toast.LENGTH_SHORT).show()
             })
             alert.show()
+        }
+
+        viewMembersBtn.setOnClickListener {
+            val myIntent = Intent(mContext, ViewProjectMemberActivity::class.java)
+            myIntent.putExtra("project", mProject)
+            startActivity(myIntent)
         }
     }
 
