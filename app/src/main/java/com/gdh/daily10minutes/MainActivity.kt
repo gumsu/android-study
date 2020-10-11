@@ -42,7 +42,6 @@ class MainActivity : BaseActivity() {
 
                 finish()
             })
-
             alert.setNegativeButton("취소",null)
             alert.show()
 
