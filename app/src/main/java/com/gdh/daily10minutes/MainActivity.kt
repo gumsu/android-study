@@ -1,9 +1,11 @@
 package com.gdh.daily10minutes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.gdh.daily10minutes.dapters.ProjectAdapter
 import com.gdh.daily10minutes.datas.Project
+import com.gdh.daily10minutes.utils.ContextUtil
 import com.gdh.daily10minutes.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
@@ -21,6 +23,17 @@ class MainActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+        logoutBtn.setOnClickListener {
+//            로그아웃 버튼이 눌리면? 로그아웃 => 기기에 저장된 토큰값 삭제
+            ContextUtil.setLoginUserToken(mContext,"")
+
+//            다시 로딩화면으로 돌아가기
+            val myIntent = Intent(mContext,SplashActivity::class.java)
+            startActivity(myIntent)
+
+            finish()
+        }
     }
 
     override fun setValues() {
