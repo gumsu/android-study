@@ -1,5 +1,6 @@
 package com.gdh.daily10minutes
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -20,6 +21,11 @@ class ViewProjectDetailActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+        viewMembersBtn.setOnClickListener {
+            val myIntent = Intent(mContext, ViewProjectMemberActivity::class.java)
+            myIntent.putExtra("project", mProject)
+            startActivity(myIntent)
+        }
     }
 
     override fun setValues() {

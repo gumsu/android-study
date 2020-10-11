@@ -27,9 +27,7 @@ class ProjectMemberAdapter(val mContext:Context,
 
         val row = tempRow!!
 
-//        실제 데이터 반영 필요
-//        뿌려줄 데이터
-        val projectData = mList[position]
+
 
         return row
     }
