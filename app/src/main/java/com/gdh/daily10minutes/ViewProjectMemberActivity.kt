@@ -3,10 +3,12 @@ package com.gdh.daily10minutes
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gdh.daily10minutes.dapters.ProjectMemberAdapter
 import com.gdh.daily10minutes.datas.Project
 import com.gdh.daily10minutes.datas.User
 import com.gdh.daily10minutes.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_project_detail.*
+import kotlinx.android.synthetic.main.activity_view_project_member.*
 import org.json.JSONObject
 import java.util.ArrayList
 
@@ -15,6 +17,8 @@ class ViewProjectMemberActivity : BaseActivity() {
     val mMemberList = ArrayList<User>()
 
     lateinit var mProject : Project
+
+    lateinit var mAdapter : ProjectMemberAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +35,9 @@ class ViewProjectMemberActivity : BaseActivity() {
         mProject = intent.getSerializableExtra("project") as Project
 
         getMembersFromServer()
+
+        mAdapter = ProjectMemberAdapter(mContext, R.layout.user_list_item, mMemberList)
+        projectMemberListView.adapter = mAdapter
     }
 
 //    프로젝트의 참여한 사람들이 누구누구 있는지 (서버에서) 불러내는 함수
@@ -51,6 +58,9 @@ class ViewProjectMemberActivity : BaseActivity() {
 
 //                    만들어진 User 객체들 => 목록에 추가
                     mMemberList.add(user)
+                }
+                runOnUiThread {
+                    mAdapter.notifyDataSetChanged()
                 }
             }
         })
