@@ -1,8 +1,10 @@
 package com.gdh.daily10minutes
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.gdh.daily10minutes.dapters.ProjectAdapter
 import com.gdh.daily10minutes.datas.Project
 import com.gdh.daily10minutes.utils.ContextUtil
@@ -25,14 +27,25 @@ class MainActivity : BaseActivity() {
     override fun setupEvents() {
 
         logoutBtn.setOnClickListener {
+
+//            연습문제: 바로 로그아웃이 아니라, 진짜 로그아웃할 건지 물어보고 처리
+            val alert = AlertDialog.Builder(mContext)
+            alert.setTitle("로그아웃")
+            alert.setMessage("로그아웃 하시겠습니까?")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialog, which ->
 //            로그아웃 버튼이 눌리면? 로그아웃 => 기기에 저장된 토큰값 삭제
-            ContextUtil.setLoginUserToken(mContext,"")
+                ContextUtil.setLoginUserToken(mContext,"")
 
 //            다시 로딩화면으로 돌아가기
-            val myIntent = Intent(mContext,SplashActivity::class.java)
-            startActivity(myIntent)
+                val myIntent = Intent(mContext,SplashActivity::class.java)
+                startActivity(myIntent)
 
-            finish()
+                finish()
+            })
+
+            alert.setNegativeButton("취소",null)
+            alert.show()
+
         }
     }
 
