@@ -1,5 +1,6 @@
 package com.gdh.daily10minutes.utils
 
+import android.content.Context
 import android.util.Log
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -164,7 +165,7 @@ class ServerUtil {
         }
 
 
-        fun getRequestProjectList(handler : JsonResponseHandler?){
+        fun getRequestProjectList(content:Context, handler : JsonResponseHandler?){
 
             val client = OkHttpClient()
 
@@ -186,8 +187,10 @@ class ServerUtil {
             val request = Request.Builder()
                 .url(urlString)
                 .get()
-//                .header() 필요시 첨부
+                .header("X-Http-Token",ContextUtil.getLoginUserToken(content))
                 .build()
+
+//            ServerUtil에서 context에 접근할 방법이 없기 때문에 함수 파라미터에 context를 추가해서 불러와준다.
 
                 client.newCall(request).enqueue(object : Callback{
                     override fun onFailure(call: Call, e: IOException) {
