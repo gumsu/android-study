@@ -8,28 +8,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="100dp"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             tools:src="@mipmap/ic_launcher"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/userNickNameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="닉네임"/>
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:text="사용자 닉네임"/>
             <TextView
                 android:id="@+id/userEmailTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이메일"/>
+                android:text="사용자 이메일"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
