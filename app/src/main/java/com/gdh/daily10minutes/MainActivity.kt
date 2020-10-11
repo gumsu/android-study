@@ -26,6 +26,17 @@ class MainActivity : BaseActivity() {
     }
     override fun setupEvents() {
 
+        projectListView.setOnItemClickListener { parent, view, position, id ->
+
+//            눌린 프로젝트 정보를 가지고 상세화면으로 이동
+            val clickedProject = mProjectList[position]
+
+            val myIntent = Intent(mContext,ViewProjectDetailActivity::class.java)
+            myIntent.putExtra("projectInfo",clickedProject)
+            startActivity(myIntent)
+
+        }
+
         logoutBtn.setOnClickListener {
 
 //            연습문제: 바로 로그아웃이 아니라, 진짜 로그아웃할 건지 물어보고 처리

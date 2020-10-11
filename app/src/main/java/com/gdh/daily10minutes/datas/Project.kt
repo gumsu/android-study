@@ -1,6 +1,8 @@
 package com.gdh.daily10minutes.datas
 
-class Project {
+import java.io.Serializable
+
+class Project : Serializable {
 
 //    서버에서 내려주는 참여가능 프로젝트의 데이터(하위정보)를 담기 위한 변수들
 //    http://15.164.153.174/api/docs/ 에서 get/project에서 execute를 하여 참여 가능한 프로젝트를 확인한다.
