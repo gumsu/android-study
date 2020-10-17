@@ -39,6 +39,12 @@ class Proof {
 //            proof의 proofTime의 시간 값을 sdf의 parse 기능 결과로 대입
             proof.proofTime.time = sdf.parse(proofTimeStr)
 
+//        인증글에 첨부된 사진 목록 파싱 (이미지 주소 String 파싱 - 프로필 사진 처럼)
+            val imagesArr = json.getJSONArray("images")
+            for(i in 0 until imagesArr.length()){
+//                {} 내부의 img_url String을 추출해서 => 인증글의 사진 목록으로 추가
+                 proof.imageList.add(imagesArr.getJSONObject(i).getString("img_url"))
+            }
             return proof
         }
     }
