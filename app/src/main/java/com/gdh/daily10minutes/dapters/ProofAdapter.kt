@@ -13,6 +13,7 @@ import com.gdh.daily10minutes.R
 import com.gdh.daily10minutes.datas.Project
 import com.gdh.daily10minutes.datas.Proof
 import com.gdh.daily10minutes.datas.User
+import java.text.SimpleDateFormat
 
 class ProofAdapter(val mContext:Context,
                    resId:Int,
@@ -44,6 +45,9 @@ class ProofAdapter(val mContext:Context,
         Glide.with(mContext).load(proofData.writer.profileImageList[0]).into(writerProfileImg)
         writerNickNameTxt.text = proofData.writer.nickName
 
+//        인증글 시간 정보 => 2020년 5월 8일 오후 3시 1분 양식으로 출력
+        val sdf = SimpleDateFormat("yyyy년 M월 d일 a h시 m분")
+        writtenDateTimeTxt.text = sdf.format(proofData.proofTime.time)
 
         return row
     }
