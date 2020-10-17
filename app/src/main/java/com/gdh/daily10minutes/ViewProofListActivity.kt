@@ -27,9 +27,6 @@ class ViewProofListActivity : BaseActivity() {
         setContentView(R.layout.activity_view_proof_list)
         setupEvents()
         setValues()
-        val today = Calendar.getInstance()
-        val sdf = SimpleDateFormat("yyyy-MM-dd")
-        getProofListFromServerByDate(sdf.format(today.time))
     }
     override fun setupEvents() {
 
@@ -74,6 +71,9 @@ class ViewProofListActivity : BaseActivity() {
 //        어댑터 리스트뷰 연결
         mProofAdapter = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
         proofListView.adapter = mProofAdapter
+
+//        today / sdf를 이용해서, 오늘 날짜의 게시글 목록 가져오기
+        getProofListFromServerByDate(sdf.format(today.time))
     }
 
     //       서버에서 선택된 날짜별 게시글을 가져오자 - 재료 : "2020-06-09" 등의 String
@@ -82,6 +82,8 @@ class ViewProofListActivity : BaseActivity() {
         ServerUtil.getRequestProjectProofByIdAndDate(mContext, mProject.id, date, object:ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
 
+//                기존에 들어있던 인증글들은 모두 날려주고
+                mProofList.clear()
 //                mProofList에 데이터 채워주고 => 리스트뷰 새로고침
                 val dataObj = json.getJSONObject("data")
                 val projectObj = dataObj.getJSONObject("project")
