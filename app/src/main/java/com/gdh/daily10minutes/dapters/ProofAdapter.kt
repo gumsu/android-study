@@ -44,6 +44,7 @@ class ProofAdapter(val mContext:Context,
         Glide.with(mContext).load(proofData.writer.profileImageList[0]).into(writerProfileImg)
         writerNickNameTxt.text = proofData.writer.nickName
 
+
         return row
     }
 }
