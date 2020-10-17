@@ -35,6 +35,18 @@ class ViewProofListActivity : BaseActivity() {
         Log.d("캘린더 연습-월", today.get(Calendar.MONTH).toString())
         Log.d("캘린더 연습-일", today.get(Calendar.DAY_OF_MONTH).toString())
 
+//        로그로 2020-10-17 양식으로 today를 출력하고 싶을 때
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        Log.d("양식 1번",sdf.format(today.time))
+
+//        로그로 201017 양식으로 today를 출력하고 싶을 때
+        val sdf2 = SimpleDateFormat("yyMMdd")
+        Log.d("양식 2번",sdf2.format(today.time))
+
+        val sdf3 = SimpleDateFormat("yy/MM/dd")
+        Log.d("양식 3번", sdf3.format(today.time))
+        val sdf4 = SimpleDateFormat("yyyy년 M월 d일 a h시 m분")
+        Log.d("양식 4번", sdf4.format(today.time))
         /*
         오늘이 아닌, 다른 날짜를 세팅?
         1. 항목을 지정하고 그 항목의 값을 변경 -> 일을 1일로 변경하고 싶다면
