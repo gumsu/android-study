@@ -1,18 +1,20 @@
 package com.gdh.daily10minutes.dapters
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.bumptech.glide.Glide
 import com.gdh.daily10minutes.R
 import com.gdh.daily10minutes.datas.Project
 import com.gdh.daily10minutes.datas.Proof
 import com.gdh.daily10minutes.datas.User
+import com.gdh.daily10minutes.utils.ServerUtil
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 
 class ProofAdapter(val mContext:Context,
@@ -60,6 +62,29 @@ class ProofAdapter(val mContext:Context,
 
 //        좋아요 개수
         likeBtn.text = "좋아요 ${proofData.likeCount}개"
+
+//        좋아요 클릭 이벤트 처리
+        likeBtn.setOnClickListener {
+            ServerUtil.postRequestLikeProof(mContext, proofData.id, object : ServerUtil.JsonResponseHandler {
+                    override fun onResponse(json: JSONObject) {
+
+                        val message = json.getString("message")
+
+//                        어댑터는 액티비티가 아니다. runOnUIThread 기능을 갖고 있지 않다.
+//                        그럼에도 UI 쓰레드에서 토스트를 띄워야 한다.
+//                        쓰레드처럼 동작: Handler를 이용해 UIThread에 접근하자.
+
+//                        getMainLooper를 통해 이 Handler는 UI 쓰레드로 접근
+                        val myHandler = Handler(Looper.getMainLooper())
+
+//                        ui 스레드에 post { } 내부의 코드를 실행하도록 요청
+                        myHandler.post {
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+//                        좋아요 개수 새로 반영
+                    }
+                })
+        }
 
         return row
     }
