@@ -57,6 +57,10 @@ class ProofAdapter(val mContext:Context,
             proofImg.visibility = View.VISIBLE
             Glide.with(mContext).load(proofData.imageList[0]).into(proofImg)
         }
+
+//        좋아요 개수
+        likeBtn.text = "좋아요 ${proofData.likeCount}개"
+
         return row
     }
 }
