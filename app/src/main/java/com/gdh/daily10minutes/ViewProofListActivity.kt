@@ -29,6 +29,14 @@ class ViewProofListActivity : BaseActivity() {
         setupEvents()
         setValues()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val today = Calendar.getInstance()
+        getProofListFromServerByDate(sdf.format(today.time))
+    }
     override fun setupEvents() {
 
 //        인증글 작성 버튼 눌리면 프로젝트를 들고 작성화면으로 이동
