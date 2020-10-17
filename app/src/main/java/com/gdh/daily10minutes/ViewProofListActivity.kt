@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.gdh.daily10minutes.datas.Project
+import com.gdh.daily10minutes.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_proof_list.*
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,7 +37,11 @@ class ViewProofListActivity : BaseActivity() {
 //                날짜 변환 양식 생성
                 val sdf = SimpleDateFormat("yyyy-MM-dd")
 //                Log.d("선택된 날짜",sdf.format(selectedDate.time))
-                selectedDateTxt.text = sdf.format(selectedDate.time)
+                val selectedDataStr = sdf.format(selectedDate.time)
+                selectedDateTxt.text = selectedDataStr
+
+//                선택된 날짜의 게시글을 가져오자
+                getProofListFromServerByDate(selectedDataStr)
 
             }, 2020, Calendar.JUNE, 10) //기본값 설정(달력을 클릭했을 때 2020년6월10일이 기본으로 나온다)
 
@@ -54,5 +60,15 @@ class ViewProofListActivity : BaseActivity() {
 //        2) 날짜를 => 2020-08-08 String으로 바꾸는 방법? => 텍스트뷰에 반영
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         selectedDateTxt.text = sdf.format(today.time)
+    }
+
+    //       서버에서 선택된 날짜별 게시글을 가져오자 - 재료 : "2020-06-09" 등의 String
+
+    fun getProofListFromServerByDate(date : String){
+        ServerUtil.getRequestProjectProofByIdAndDate(mContext, mProject.id, date, object:ServerUtil.JsonResponseHandler{
+            override fun onResponse(json: JSONObject) {
+
+            }
+        })
     }
 }
