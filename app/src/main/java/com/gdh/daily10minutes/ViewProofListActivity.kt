@@ -27,6 +27,9 @@ class ViewProofListActivity : BaseActivity() {
         setContentView(R.layout.activity_view_proof_list)
         setupEvents()
         setValues()
+        val today = Calendar.getInstance()
+        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        getProofListFromServerByDate(sdf.format(today.time))
     }
     override fun setupEvents() {
 
