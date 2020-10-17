@@ -1,6 +1,7 @@
 package com.gdh.daily10minutes
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -29,6 +30,13 @@ class ViewProofListActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+//        인증글 작성 버튼 눌리면 프로젝트를 들고 작성화면으로 이동
+        writeProofBtn.setOnClickListener {
+            val myIntent = Intent(mContext,EditProofActivity::class.java)
+            myIntent.putExtra("project", mProject)
+            startActivity(myIntent)
+        }
 
 //        날짜 선택 버튼이 눌리면 => 달력을 띄워서 날짜 선택 받기
         selectDateBtn.setOnClickListener {
