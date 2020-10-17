@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.gdh.daily10minutes.dapters.ProofAdapter
 import com.gdh.daily10minutes.datas.Project
 import com.gdh.daily10minutes.datas.Proof
 import com.gdh.daily10minutes.utils.ServerUtil
@@ -18,6 +19,8 @@ class ViewProofListActivity : BaseActivity() {
     lateinit var mProject : Project
 
     val mProofList = ArrayList<Proof>()
+
+    lateinit var mProofAdapter : ProofAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +67,10 @@ class ViewProofListActivity : BaseActivity() {
 //        2) 날짜를 => 2020-08-08 String으로 바꾸는 방법? => 텍스트뷰에 반영
         val sdf = SimpleDateFormat("yyyy-MM-dd")
         selectedDateTxt.text = sdf.format(today.time)
+
+//        어댑터 리스트뷰 연결
+        mProofAdapter = ProofAdapter(mContext, R.layout.proof_list_item, mProofList)
+        proofListView.adapter = mProofAdapter
     }
 
     //       서버에서 선택된 날짜별 게시글을 가져오자 - 재료 : "2020-06-09" 등의 String
@@ -85,6 +92,7 @@ class ViewProofListActivity : BaseActivity() {
 //                리스트뷰 어댑터에게 새로고침
                 runOnUiThread {
 
+                    mProofAdapter.notifyDataSetChanged()
                 }
             }
         })
