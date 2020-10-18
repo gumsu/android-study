@@ -1,5 +1,7 @@
 package com.gdh.daily10minutes
 
+import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -11,10 +13,27 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract fun setupEvents()
     abstract fun setValues()
 
+//    BaseActivity의 onCreate를 오버라이딩
+//    상속받는 다른 모든 액티비티의 super.onCreate에서 이 코드를 실행함
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+//        여기서 실행하는 코드는 => 모든 액티비티가 공통적으로 실행한다.
+//        여기서 커스텀 액션바 셋팅 => 모든 액티비티가 커스텀 액션바 셋팅
+
+//        액션바가 있을 때만, 셋팅하도록 상황 확인
+        supportActionBar?.let {
+//            setCustomActionBar()가 null이 아닐 때만 실행해줄 코드
+            setCustomActionBar()
+        }
+
+    }
+
 //    액션바를 커스터마이징 해주는 기능 (모든 액티비티가 공유 - BaseActivity에 작성)
     fun setCustomActionBar(){
 
-//          모든 액티비티에는 액션바가 있다고 전제하자
+//          모든 액티비티에는 액션바가 있다고 전제하자 (NULL에 대한 리스크 감수)
         val myActionBar = supportActionBar!!
 //          액션바가 커스텀 화면을 보여줄 수 있게 모드 설정
         myActionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
