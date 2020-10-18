@@ -33,7 +33,7 @@ class ViewProofReplyListActivity : BaseActivity() {
 //        입력버튼이 눌리면 => 댓글 입력 내용을 서버에 전송 => 리스트뷰 새로고침
 
         inputBtn.setOnClickListener {
-            val inputReply = replyContentTxt.text.toString()
+            val inputReply = replyContentEdt.text.toString()
 
 //            댓글이 5글자 미만이면, 너무 짧아서 거부 처리
             if(inputReply.length < 5){
@@ -51,7 +51,7 @@ class ViewProofReplyListActivity : BaseActivity() {
 //                    댓글은 작성되기만 하면, 무조건 내용 새로고침 하자
 //                    댓글 내용을 다시 불러서 => 리스트뷰에 반영
 
-                    getReplysFromServer()
+                    getRepliesFromServer()
                 }
            })
         }
@@ -78,9 +78,11 @@ class ViewProofReplyListActivity : BaseActivity() {
 
         mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_item, mReplyArrayList)
         replyListView.adapter = mReplyAdapter
+
+        getRepliesFromServer()
     }
 
-    fun getReplysFromServer(){
+    fun getRepliesFromServer(){
 
         ServerUtil.getRequestReplyListByProofId(mContext, mProof.id, object :ServerUtil.JsonResponseHandler{
             override fun onResponse(json: JSONObject) {
@@ -99,6 +101,16 @@ class ViewProofReplyListActivity : BaseActivity() {
 //                목록 새로고침
                 runOnUiThread {
                     mReplyAdapter.notifyDataSetChanged()
+                    /*
+                    불편사항 개선
+                    1. 입력되어 있는 내용 삭제 => editText는 setText로 내용 설정
+                    2. 리스트뷰 바닥으로 끌어내려 (애니메이션) 주기 => 스크롤을 맨 밑으로 내리자
+                        맨 밑: 마지막 댓글을 보러 가자 => 10개 댓글이 있다면 0~9번 중 9번 댓글로 이동
+                        전체 갯수 - 1번째 댓글로 이동
+
+                     */
+                    replyContentEdt.setText("")
+                    replyListView.smoothScrollToPosition(mReplyArrayList -1)
                 }
             }
         })
