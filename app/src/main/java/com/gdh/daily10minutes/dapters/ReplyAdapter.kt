@@ -1,6 +1,8 @@
 package com.gdh.daily10minutes.dapters
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +13,9 @@ import com.bumptech.glide.Glide
 import com.gdh.daily10minutes.R
 import com.gdh.daily10minutes.datas.Project
 import com.gdh.daily10minutes.datas.Reply
+import com.gdh.daily10minutes.utils.ServerUtil
 import com.gdh.daily10minutes.utils.TimeUtil
+import org.json.JSONObject
 
 class ReplyAdapter(val mContext:Context,
                    resId:Int,
@@ -57,6 +61,29 @@ class ReplyAdapter(val mContext:Context,
         createdAtTxt.text = TimeUtil.getTimeAgoByCalendar(replyData.createdAt)
         likeCountTxt.text = "좋아요 ${replyData.likeCount}개"
 
+        myLikeImg.setOnClickListener {
+            ServerUtil.postRequestLikeProofReply(mContext, replyData.id, object: ServerUtil.JsonResponseHandler{
+                override fun onResponse(json: JSONObject) {
+
+                    val dataObj = json.getJSONObject("data")
+                    val likeObj = dataObj.getJSONObject("like")
+
+//                    이 줄의 댓글(replyData) 에서, 좋아요 개수/ 내 좋아요 여부만 변경해서 새로고침
+                    replyData.likeCount = likeObj.getInt("like_count")
+                    replyData.isMyLike = likeObj.getBoolean("my_like")
+
+                    val myHandler = Handler(Looper.getMainLooper())
+
+                    myHandler.post {
+//                        runOnUIThread와 같은 쓰레드에서 실행되는 코드
+
+//                        startActivity, runOnUIThread 등은 액티비티의 고유 기능
+//                        notifyDataSetChanged()는 어댑터 고유 기능
+                        notifyDataSetChanged()
+                    }
+                }
+            })
+        }
         return row
     }
 }
