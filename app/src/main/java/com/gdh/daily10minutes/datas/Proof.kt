@@ -1,11 +1,12 @@
 package com.gdh.daily10minutes.datas
 
 import org.json.JSONObject
+import java.io.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Proof {
+class Proof :Serializable{
     var id = 0
     var content = ""
 

@@ -1,6 +1,7 @@
 package com.gdh.daily10minutes.dapters
 
 import android.content.Context
+import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.gdh.daily10minutes.R
+import com.gdh.daily10minutes.ViewProofReplyListActivity
 import com.gdh.daily10minutes.datas.Project
 import com.gdh.daily10minutes.datas.Proof
 import com.gdh.daily10minutes.datas.User
@@ -156,6 +158,16 @@ class ProofAdapter(val mContext:Context,
                 })
         }
 
+//        댓글 달기 버튼을 누르면 해당 인증글의 댓글 목록 화면으로 이동
+
+        replyBtn.setOnClickListener {
+
+            val myIntent = Intent(mContext,ViewProofReplyListActivity::class.java)
+            myIntent.putExtra("proof",proofData)
+
+//            어댑터는 startActivity 기능이 없다. mContext(어떤 화면?)의 기능을 활용한다.
+            mContext.startActivity(myIntent)
+        }
         return row
     }
 }
