@@ -110,7 +110,7 @@ class ViewProofReplyListActivity : BaseActivity() {
 
                      */
                     replyContentEdt.setText("")
-                    replyListView.smoothScrollToPosition(mReplyArrayList -1)
+                    replyListView.smoothScrollToPosition(mReplyArrayList.size -1)
                 }
             }
         })
