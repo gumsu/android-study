@@ -3,6 +3,7 @@ package com.gdh.daily10minutes
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.gdh.daily10minutes.dapters.ReplyAdapter
 import com.gdh.daily10minutes.datas.Proof
@@ -29,6 +30,31 @@ class ViewProofReplyListActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+//        입력버튼이 눌리면 => 댓글 입력 내용을 서버에 전송 => 리스트뷰 새로고침
+
+        inputBtn.setOnClickListener {
+            val inputReply = replyContentTxt.text.toString()
+
+//            댓글이 5글자 미만이면, 너무 짧아서 거부 처리
+            if(inputReply.length < 5){
+                Toast.makeText(mContext, "댓글은 5자 이상이어야 합니다.", Toast.LENGTH_SHORT).show()
+
+//                return : 결과 지정 => 함수의 종료 기능도 겸함
+//                return은 반대로, 함수를 강제종료 시키고 싶을 때도 추가한다.
+                return@setOnClickListener
+            }
+
+//            이 줄이 실행된다: 강제종료 되지 않았다: 댓글이 5자 이상이다.
+            ServerUtil.postRequestWriteProofReply(mContext, mProof.id, inputReply, object : ServerUtil.JsonResponseHandler{
+                override fun onResponse(json: JSONObject) {
+
+//                    댓글은 작성되기만 하면, 무조건 내용 새로고침 하자
+//                    댓글 내용을 다시 불러서 => 리스트뷰에 반영
+
+                    getReplysFromServer()
+                }
+           })
+        }
 
     }
 
@@ -61,6 +87,9 @@ class ViewProofReplyListActivity : BaseActivity() {
                 val dataObj = json.getJSONObject("data")
                 val proofObj = dataObj.getJSONObject("project")
                 val repliesArr = proofObj.getJSONArray("replies")
+
+//                기존에 들어있던 댓글은 전부 삭제 -> 불러내자
+                mReplyArrayList.clear()
 
                 for(i in 0 until repliesArr.length()){
 //                    MainActivity의 Project 파싱 부분과 비교해보자(같은 기능)
