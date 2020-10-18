@@ -69,13 +69,38 @@ class MainActivity : BaseActivity() {
 
 //        노티 아이콘 보여야함
         notiImg.visibility = View.VISIBLE
+        getNotiCountFromServer()
+    }
+
+//    서버에서 안읽은 알림이 몇 개 인지 가져오는 기능
+
+    fun getNotiCountFromServer(){
+        ServerUtil.getRequestNotiCount(mContext, object : ServerUtil.JsonResponseHandler{
+            override fun onResponse(json: JSONObject) {
+
+                val dataObj = json.getJSONObject("data")
+                val notiCount = dataObj.getInt("unread_noti_count")
+
+//                알림 0개: 빨간 점 숨김
+//                하나 이상: 보여주기 + 개수 반영
+
+                runOnUiThread {
+                    if(notiCount == 0){
+                        notiCountTxt.visibility = View.GONE
+                    }else{
+                        notiCountTxt.visibility = View.VISIBLE
+                        notiCountTxt.text = notiCount.toString()
+                    }
+                }
+            }
+        })
     }
 
 //    서버에서 프로젝트 목록 가져오는 코드를 별도 함수로 분리하여 작성
     fun getProjectListFromServer(){
 
 //           서버에 프로젝트 목록 요청 => 응답을 분석 => 목록에 담아주는 코드
-    ServerUtil.getRequestProjectList(mContext, object : ServerUtil.JsonResponseHandler{
+     ServerUtil.getRequestProjectList(mContext, object : ServerUtil.JsonResponseHandler{
         override fun onResponse(json: JSONObject) {
 
             val dataObj = json.getJSONObject("data")
