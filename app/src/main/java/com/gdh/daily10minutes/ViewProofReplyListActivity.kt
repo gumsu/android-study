@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
 import com.gdh.daily10minutes.datas.Proof
+import com.gdh.daily10minutes.utils.TimeUtil
 import kotlinx.android.synthetic.main.activity_view_proof_reply_list.*
-import kotlinx.android.synthetic.main.proof_list_item.*
-import kotlinx.android.synthetic.main.proof_list_item.writerNickNameTxt
-import kotlinx.android.synthetic.main.proof_list_item.writerProfileImg
 
 class ViewProofReplyListActivity : BaseActivity() {
 
@@ -41,5 +39,7 @@ class ViewProofReplyListActivity : BaseActivity() {
             proofImg.visibility = View.VISIBLE
             Glide.with(mContext).load(mProof.imageList[0]).into(proofImg)
         }
+
+        writtenDateTimeTxt.text = TimeUtil.getTimeAgoByCalendar(mProof.proofTime)
     }
 }
