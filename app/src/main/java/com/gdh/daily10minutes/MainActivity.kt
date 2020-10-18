@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import com.gdh.daily10minutes.dapters.ProjectAdapter
 import com.gdh.daily10minutes.datas.Project
@@ -65,6 +66,9 @@ class MainActivity : BaseActivity() {
         mAdapter = ProjectAdapter(mContext, R.layout.project_list_item, mProjectList)
 
         projectListView.adapter = mAdapter
+
+//        노티 아이콘 보여야함
+        notiImg.visibility = View.VISIBLE
     }
 
 //    서버에서 프로젝트 목록 가져오는 코드를 별도 함수로 분리하여 작성
