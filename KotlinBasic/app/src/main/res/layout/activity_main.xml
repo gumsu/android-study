@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="15dp"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/clickMeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="click me!" />
+
+    <Button
+        android:id="@+id/makeLogBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="로그 남기기 버튼" />
+
+    <Button
+        android:id="@+id/toastBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="사용자가 눌렀다고 인식 가능한 버튼" />
+
+    <EditText
+        android:id="@+id/contentEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:hint="토스트로 출력할 내용 적기" />
+
+    <Button
+        android:id="@+id/contentToastBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="입력된 문구 토스트로 띄우기" />
+
+    <EditText
+        android:id="@+id/messageEdt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="텍스트뷰에 반영할 문구 적기"
+        android:singleLine="true" />
+
+    <Button
+        android:id="@+id/changeTextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="하단의 텍스트뷰 문구 변경하기" />
+
+    <TextView
+        android:id="@+id/resultTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="변경될 텍스트 뷰"
+        android:textSize="18sp"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/nameEdt"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:hint="이름 입력"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/greetingBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인사 문구 출력"/>
+    </LinearLayout>
+</LinearLayout>
